@@ -27,12 +27,13 @@
     <input type="number" name="price" id="price" value="${productUpdate.price}"><br>
 
     <label for="image">Image_URL</label>
-    <input type="text" name="image_url" id="image" value="${productUpdate.image_url}"><br>
+    <input type="file" name="image_url" id="image" value="${productUpdate.image_url}"><br>
 
-    <label for="create">Image_URL</label>
-    <input type="text" name="created_at" id="create" value="${productUpdate.created_at}"><br>
+    <label for="create">Created At</label>
+    <input type="date" name="created_at" id="create" value="${productUpdate.created_at}"><br>
 
-    <select name="category.categoryId" id="type">
+    <label for="category">Category Name</label>
+    <select name="category.categoryId" id="category">
         <c:forEach items="${categoryList}" var="category">
             <option value="${category.categoryId}">${category.categoryName}</option>
         </c:forEach>
