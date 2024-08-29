@@ -13,7 +13,7 @@
 </head>
 <body>
     <h2>PRODUCT MANAGEMENT</h2>
-    <table>
+    <table border="1">
         <thead>
         <tr>
             <th>ID</th>
