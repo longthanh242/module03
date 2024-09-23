@@ -27,7 +27,6 @@ public class CategoryController {
     @GetMapping("/initCreate")
     public String initCreateNewCategory(Model model){
         model.addAttribute("categoryDTO", new CategoryDTO());
-        model.addAttribute("categoryList", categoryService.renderAll());
         return "createNewCategory";
     }
     @PostMapping("/create")

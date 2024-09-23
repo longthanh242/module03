@@ -10,6 +10,13 @@
 <html>
 <head>
     <title>Update Product</title>
+    <script>
+        function updateFileName() {
+            let input = document.getElementById('image');
+            let fileNameLabel = document.getElementById('fileName');
+            fileNameLabel.textContent = input.files.length > 0 ? input.files[0].name : 'No file chosen';
+        }
+    </script>
 </head>
 <body>
 <h2>Update Product</h2>
@@ -26,8 +33,8 @@
     <label for="price">Price</label>
     <input type="number" name="price" id="price" value="${productUpdate.price}"><br>
 
-    <label for="image">Image_URL</label>
-    <input type="file" name="image_url" id="image" value="${productUpdate.image_url}"><br>
+    <label for="image">Image</label>
+    <input type="file" name="image_url" id="image" onchange="updateFileName()"><br>
 
     <label for="create">Created At</label>
     <input type="date" name="created_at" id="create" value="${productUpdate.created_at}"><br>
@@ -35,7 +42,7 @@
     <label for="category">Category Name</label>
     <select name="category.categoryId" id="category">
         <c:forEach items="${categoryList}" var="category">
-            <option value="${category.categoryId}">${category.categoryName}</option>
+            <option value="${category.categoryId}" ${category.categoryId == productUpdate.category.categoryId?"selected":""}>${category.categoryName}</option>
         </c:forEach>
     </select><br>
 

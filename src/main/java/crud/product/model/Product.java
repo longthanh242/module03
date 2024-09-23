@@ -31,7 +31,7 @@ public class Product {
     @Column(name = "status")
     private boolean status;
     @Column(name = "created_at")
-    @DateTimeFormat(pattern = "yyyy-MM-dddd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date created_at;
     @ManyToOne

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -28,16 +29,16 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${productList}" var="product">
+        <c:forEach items="${productList}" var="product" varStatus="loop">
             <tr>
                 <td>${product.productId}</td>
                 <td>${product.productName}</td>
-                <td><img src="${product.image_url}" alt="${product.productName}"></td>
+                <td><img src="${product.image_url}" alt="${product.productName}" width="50px" height="50px"></td>
                 <td>${product.description}</td>
                 <td>${product.price}</td>
                 <td>${product.status?"Active":"Inactive"}</td>
                 <td>${product.category.categoryName}</td>
-                <td>${product.created_at}</td>
+                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${product.created_at}"/></td>
                 <td>
                     <a href="<%=request.getContextPath()%>/productController/initUpdateProduct?productId=${product.productId}">Edit</a>
                     <a href="<%=request.getContextPath()%>/productController/delete?productId=${product.productId}">Delete</a>

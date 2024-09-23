@@ -81,6 +81,7 @@ public class AppConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+
     //7. Cấu hình MultipartResolver
     @Bean
     public CommonsMultipartResolver multipartResolver() {
