@@ -1,7 +1,7 @@
 package crud.product.service.imp;
 
-import crud.product.dto.request.CategoryDTO;
-import crud.product.model.Category;
+import crud.product.model.dto.request.CategoryDTO;
+import crud.product.model.entity.Category;
 import crud.product.repository.CategoryRepository;
 import crud.product.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import java.util.List;
 public class CategoryServiceImp implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
+
     @Override
     public List<Category> renderAll() {
         return categoryRepository.renderAll();
@@ -34,7 +35,12 @@ public class CategoryServiceImp implements CategoryService {
     }
 
     @Override
-    public boolean updateCategory(Category category) {
+    public boolean updateCategory(int categoryId, CategoryDTO categoryDTO) {
+        Category category = Category.builder()
+                .categoryId(categoryId)
+                .categoryName(categoryDTO.getCategoryName())
+                .description(categoryDTO.getDescription())
+                .build();
         return categoryRepository.updateCategory(category);
     }
 

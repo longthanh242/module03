@@ -1,6 +1,6 @@
-package crud.product.dto.request;
+package crud.product.model.dto.request;
 
-import crud.product.model.Product;
+import crud.product.model.entity.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

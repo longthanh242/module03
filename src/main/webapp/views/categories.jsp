@@ -13,6 +13,8 @@
 </head>
 <body>
 <h2>Category Management</h2>
+<a href="<%=request.getContextPath()%>/categoryController/initCreate">Create New Category</a>
+<a href="<%=request.getContextPath()%>/index.jsp">Home</a>
 <table border="1">
     <thead>
     <tr>
@@ -38,6 +40,5 @@
     </c:forEach>
     </tbody>
 </table>
-<a href="<%=request.getContextPath()%>/categoryController/initCreate">Create New Category</a>
 </body>
 </html>

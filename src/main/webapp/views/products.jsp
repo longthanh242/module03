@@ -13,40 +13,41 @@
     <title>Product Management</title>
 </head>
 <body>
-    <h2>PRODUCT MANAGEMENT</h2>
-    <table border="1">
-        <thead>
+<h2>PRODUCT MANAGEMENT</h2>
+<a href="<%=request.getContextPath()%>/productController/initCreate">Create New Product</a>
+<a href="<%=request.getContextPath()%>/index.jsp">Home</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>IMAGE</th>
+        <th>DESCRIPTION</th>
+        <th>PRICE</th>
+        <th>CATEGORY NAME</th>
+        <th>CREATED</th>
+        <th>STATUS</th>
+        <th>ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach items="${productList}" var="product" varStatus="loop">
         <tr>
-            <th>ID</th>
-            <th>NAME</th>
-            <th>IMAGE</th>
-            <th>DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>STATUS</th>
-            <th>CATEGORY NAME</th>
-            <th>CREATED</th>
-            <th>ACTION</th>
+            <td>${product.productId}</td>
+            <td>${product.productName}</td>
+            <td><img src="${product.image_url}" alt="${product.productName}" width="50px" height="50px"></td>
+            <td>${product.description}</td>
+            <td>${product.price}</td>
+            <td>${product.catName}</td>
+            <td><fmt:formatDate pattern="dd/MM/yyyy" value="${product.created_at}"/></td>
+            <td>${product.status?"Active":"Inactive"}</td>
+            <td>
+                <a href="<%=request.getContextPath()%>/productController/initUpdate?productId=${product.productId}">Edit</a>
+                <a href="<%=request.getContextPath()%>/productController/delete?productId=${product.productId}">Delete</a>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${productList}" var="product" varStatus="loop">
-            <tr>
-                <td>${product.productId}</td>
-                <td>${product.productName}</td>
-                <td><img src="${product.image_url}" alt="${product.productName}" width="50px" height="50px"></td>
-                <td>${product.description}</td>
-                <td>${product.price}</td>
-                <td>${product.status?"Active":"Inactive"}</td>
-                <td>${product.category.categoryName}</td>
-                <td><fmt:formatDate pattern="dd/MM/yyyy" value="${product.created_at}"/></td>
-                <td>
-                    <a href="<%=request.getContextPath()%>/productController/initUpdateProduct?productId=${product.productId}">Edit</a>
-                    <a href="<%=request.getContextPath()%>/productController/delete?productId=${product.productId}">Delete</a>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-    <a href="<%=request.getContextPath()%>/productController/initCreateProduct">Create New Product</a>
+    </c:forEach>
+    </tbody>
+</table>
 </body>
 </html>

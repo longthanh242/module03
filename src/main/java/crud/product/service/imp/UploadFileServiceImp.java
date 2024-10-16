@@ -18,22 +18,30 @@ import java.util.List;
 
 @Service
 public class UploadFileServiceImp implements UploadFileService {
+    // Lấy Storage trong FirebaseConfig
     @Autowired
     private Storage storage;
     @Autowired
     private ServletContext servletContext;
     private final String BUCK_NAME = "products-56037.appspot.com";
 
+    // Upload ảnh lên local tomcat
     @Override
     public String uploadFileToLocal(MultipartFile multipartFile) {
         //1. Tạo thư mục tạm uploads trong server tomcat
+        // Tạo đường dẫn gốc đến file
         String pathUpload = servletContext.getRealPath("/");
+        // Khai báo file = đường dẫn gốc + folder
         File uploadFolder = new File(pathUpload + "/uploads");
+        // Nếu thư mục chưa tồn tại thì tạo
         if (!uploadFolder.exists()) {
             uploadFolder.mkdirs();
         }
-        //2. copy ảnh từ multipart sang thư mục uploads
+
+        //2. Copy ảnh từ multipart sang thư mục uploads
+        // Lấy ra tên file ảnh không kèm đuôi
         String fileName = multipartFile.getOriginalFilename();
+        // fileUpload: đường dẫn foler + / + tên file ảnh
         // File.seperator = "/": có thể viết 1 trong 2
         File fileUpload = new File(uploadFolder + File.separator + fileName);
         try {
@@ -41,15 +49,17 @@ public class UploadFileServiceImp implements UploadFileService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //3. Gọi phương thức upload lên firebase và truyền đối số là đường dẫn ảnh trên tomcat
+        //3. Gọi phương thức uploadFileToFireBase và truyền đối số là đường dẫn ảnh trên tomcat
         return uploadFileToFireBase(uploadFolder + File.separator + fileName);
     }
 
+    // Upload từ local lên firebase
     @Override
     public String uploadFileToFireBase(String localFilePath) {
         Path localPath = Paths.get(localFilePath);
+        // Lấy ra tên ảnh
         String fileName = localPath.getFileName().toString();
-
+        // BUCK_NAME: Up lên bucket của firebase
         BlobId blobId = BlobId.of(BUCK_NAME, fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).build();
         // Thiết lập quyền truy cập công cộng

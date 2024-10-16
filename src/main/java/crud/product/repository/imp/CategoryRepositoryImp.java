@@ -1,6 +1,6 @@
 package crud.product.repository.imp;
 
-import crud.product.model.Category;
+import crud.product.model.entity.Category;
 import crud.product.repository.CategoryRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

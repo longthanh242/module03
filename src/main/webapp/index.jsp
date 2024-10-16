@@ -8,7 +8,7 @@
 <h1>PRODUCT MANAGEMENT</h1>
 <ul>
     <li><a href="<%=request.getContextPath()%>/categoryController/renderAll">Category Management</a></li>
-    <li><a href="<%=request.getContextPath()%>/productController/renderAllProduct">Product Management</a></li>
+    <li><a href="<%=request.getContextPath()%>/productController/renderAll">Product Management</a></li>
 </ul>
 </body>
 </html>

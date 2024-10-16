@@ -1,6 +1,6 @@
-package crud.product.dto.request;
+package crud.product.model.dto.request;
 
-import crud.product.model.Category;
+import crud.product.model.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +25,6 @@ public class ProductDTO {
     private MultipartFile image;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date created_at;
+    private boolean status;
     private Category category;
 }
